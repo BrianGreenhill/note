@@ -1,17 +1,17 @@
-# notes
+# note
 
 To keep track of all those notes you keep taking and losing
 
 ## Requirements
-Golang
+- Golang >= 1.14
+- Notes to take
 
 ## TODO
-- list notes
-- add note
-- help command
-- add repo command
-- configuration via config file
+- take note
 - append to existing note
+- define repository
+- push note to repo
+- sync notes with repo
 - finish this readme
 
 ## How to Build
@@ -20,31 +20,23 @@ Golang
 
 ### Directories
 
-notes will make a directory in the home folder given by the `XDG_CONFIG_HOME`
-variable for configuration. `NOTES_DIR` tells notes where to put the notes
-repository.
+Config is in $HOME/.note.yaml unless specified otherwise by passing the `cfgFile` flag to the `note` command. Notes are saved in the directory specified in your config file as `notedir`.
 
 ### Basic Usage
 
 ```
-notes {cmd} {note}
+note {cmd} {note}
 
-notes help = help
-    Prints the help menu
-
-notes ls/list
+note list
     Lists notes
 
-notes add {note}
+note take {note}
     Stores new note in file
 
-notes append {index} {note}
-    Appends note to the note given by the index
+note delete {index}
+    Deletes the note at the given index
 
-notes delete {index}
-    Deletes the note
-
-notes sync
-    Commits new notes to repo
+note sync
+    Commits new note to repo
     git add . && git commit && git push origin master
 ```
