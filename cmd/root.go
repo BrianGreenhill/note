@@ -10,8 +10,10 @@ import (
 )
 
 var (
-	cfgFile string
-	noteDir string
+	cfgFile  string
+	noteDir  string
+	gitUser  string
+	gitToken string
 
 	rootCmd = &cobra.Command{
 		Use:   "note",
@@ -23,7 +25,11 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.note.yaml)")
 	rootCmd.PersistentFlags().StringVar(&noteDir, "notedir", "", "Note directory")
+	rootCmd.PersistentFlags().StringVar(&gitUser, "gituser", "", "Github user")
+	rootCmd.PersistentFlags().StringVar(&gitToken, "gittoken", "", "Github token")
 	viper.BindPFlag("notedir", rootCmd.PersistentFlags().Lookup("notedir"))
+	viper.BindPFlag("gituser", rootCmd.PersistentFlags().Lookup("gituser"))
+	viper.BindPFlag("gittoken", rootCmd.PersistentFlags().Lookup("gittoken"))
 }
 
 func initConfig() {

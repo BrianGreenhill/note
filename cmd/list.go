@@ -33,6 +33,9 @@ var (
 			})
 
 			for i, f := range files {
+				if f.Name() == ".git" {
+					continue
+				}
 				fmt.Println(i, f.Name(), f.ModTime().Local().Format(tsformat))
 			}
 		},

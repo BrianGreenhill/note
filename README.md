@@ -7,11 +7,8 @@ To keep track of all those notes you keep taking and losing
 - Notes to take
 
 ## TODO
-- take note
 - append to existing note
 - define repository
-- push note to repo
-- sync notes with repo
 - finish this readme
 
 ## How to Build
@@ -32,9 +29,6 @@ note list
 
 note take {note}
     Stores new note in file
-
-note delete {index}
-    Deletes the note at the given index
 
 note sync
     Commits new note to repo
