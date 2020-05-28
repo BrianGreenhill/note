@@ -8,7 +8,7 @@ To keep track of all those notes you keep taking and losing
 
 ## TODO
 - append to existing note
-- define repository
+- search through notes by text
 - finish this readme
 
 ## How to Build
@@ -17,7 +17,9 @@ To keep track of all those notes you keep taking and losing
 
 ### Directories
 
-Config is in $HOME/.note.yaml unless specified otherwise by passing the `cfgFile` flag to the `note` command. Notes are saved in the directory specified in your config file as `notedir`.
+Config is in $HOME/.note.yaml unless specified otherwise by passing the
+`cfgFile` flag to the `note` command. Notes are saved in the directory
+specified in your config file as `notedir`.
 
 ### Basic Usage
 
