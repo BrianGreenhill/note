@@ -14,6 +14,7 @@ var (
 	noteDir  string
 	gitUser  string
 	gitToken string
+	editor   string
 
 	rootCmd = &cobra.Command{
 		Use:   "note",
@@ -27,9 +28,11 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&noteDir, "notedir", "", "Note directory")
 	rootCmd.PersistentFlags().StringVar(&gitUser, "gituser", "", "Github user")
 	rootCmd.PersistentFlags().StringVar(&gitToken, "gittoken", "", "Github token")
+	rootCmd.PersistentFlags().StringVar(&editor, "editor", "", "Editor")
 	viper.BindPFlag("notedir", rootCmd.PersistentFlags().Lookup("notedir"))
 	viper.BindPFlag("gituser", rootCmd.PersistentFlags().Lookup("gituser"))
 	viper.BindPFlag("gittoken", rootCmd.PersistentFlags().Lookup("gittoken"))
+	viper.BindPFlag("editor", rootCmd.PersistentFlags().Lookup("editor"))
 }
 
 func initConfig() {
