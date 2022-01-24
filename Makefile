@@ -2,18 +2,18 @@
 TOOLS=_tools
 
 all: clean build install
-	@clear
 	@echo "`note`"
 
 build: clean
 	@go build -o ./bin/note main.go
 
-install: all
+install:
 	@echo "==> installing binary to ${HOME}/.local/bin"
 	@cp ./bin/note $(HOME)/.local/bin
 
 clean:
 	@echo "==> cleaning generated files"
+	@rm -f ${HOME}/.local/bin/note
 	@rm -rf ./bin/*
 
 tools:
