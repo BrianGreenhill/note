@@ -1,6 +1,8 @@
-# note
 
-To keep track of all those notes you keep taking and losing
+# note
+To keep track of all those notes you keep taking and losing. Take a note, sync to GitHub.
+
+![note](https://user-images.githubusercontent.com/1642339/150881360-9a9c4649-7324-4191-a93c-a9a60bf3bf0c.gif)
 
 ## Requirements
 
