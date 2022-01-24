@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"os"
+	"log"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
@@ -29,10 +29,18 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&gitUser, "gituser", "", "Github user")
 	rootCmd.PersistentFlags().StringVar(&gitToken, "gittoken", "", "Github token")
 	rootCmd.PersistentFlags().StringVar(&editor, "editor", "", "Editor")
-	viper.BindPFlag("notedir", rootCmd.PersistentFlags().Lookup("notedir"))
-	viper.BindPFlag("gituser", rootCmd.PersistentFlags().Lookup("gituser"))
-	viper.BindPFlag("gittoken", rootCmd.PersistentFlags().Lookup("gittoken"))
-	viper.BindPFlag("editor", rootCmd.PersistentFlags().Lookup("editor"))
+	if err := viper.BindPFlag("notedir", rootCmd.PersistentFlags().Lookup("notedir")); err != nil {
+		log.Fatal(err)
+	}
+	if err := viper.BindPFlag("gituser", rootCmd.PersistentFlags().Lookup("gituser")); err != nil {
+		log.Fatal(err)
+	}
+	if err := viper.BindPFlag("gittoken", rootCmd.PersistentFlags().Lookup("gittoken")); err != nil {
+		log.Fatal(err)
+	}
+	if err := viper.BindPFlag("editor", rootCmd.PersistentFlags().Lookup("editor")); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func initConfig() {
@@ -41,8 +49,7 @@ func initConfig() {
 	} else {
 		home, err := homedir.Dir()
 		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
+			log.Fatal(err)
 		}
 		viper.AddConfigPath(home)
 		viper.SetConfigName(".note")

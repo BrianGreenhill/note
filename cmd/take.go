@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
+	"os/exec"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -14,7 +16,9 @@ func init() {
 	rootCmd.AddCommand(takeCmd)
 	takeCmd.Flags().StringVarP(&note, "note", "n", "", "Note to take as string")
 	takeCmd.Flags().StringVar(&format, "format", "md", "File format for note")
-	viper.BindPFlag("format", takeCmd.Flags().Lookup("format"))
+	if err := viper.BindPFlag("format", takeCmd.Flags().Lookup("format")); err != nil {
+		log.Fatal(err)
+	}
 }
 
 const (
@@ -41,5 +45,10 @@ func takeNote(cmd *cobra.Command, args []string) {
 		log.Fatalf("Could not write file %+v", err)
 	}
 
-	fmt.Printf("Taking your note: %s. Find it here: %s", args[0], filename)
+	editorCmd := exec.Command(viper.GetString("editor"), filename)
+	editorCmd.Stdin = os.Stdin
+	editorCmd.Stdout = os.Stdout
+	if err := editorCmd.Run(); err != nil {
+		log.Fatal(err)
+	}
 }

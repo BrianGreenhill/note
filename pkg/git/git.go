@@ -1,6 +1,7 @@
 package git
 
 import (
+	"log"
 	"os"
 	"os/exec"
 	"time"
@@ -32,13 +33,19 @@ func StashPop() bool {
 	return run(exec.Command("git", "stash", "pop"))
 }
 
+func Diff() bool {
+	return run(exec.Command("git", "diff"))
+}
+
 func run(c *exec.Cmd) bool {
 	c.Dir = viper.GetString("notedir")
 
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
 	c.Stdin = os.Stdin
-	c.Run()
+	if err := c.Run(); err != nil {
+		log.Fatal(err)
+	}
 
 	return c.ProcessState.Success()
 }

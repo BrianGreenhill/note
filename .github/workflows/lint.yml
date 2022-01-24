@@ -1,0 +1,9 @@
+name: "lint go code"
+on:
+  - push
+jobs:
+  lint-go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make lint

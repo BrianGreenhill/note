@@ -1,6 +1,6 @@
 module github.com/BrianGreenhill/note
 
-go 1.14
+go 1.16
 
 require (
 	github.com/manifoldco/promptui v0.9.0
